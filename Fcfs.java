@@ -49,7 +49,7 @@ public class Fcfs {
     public static void main(String[] args) {
         System.out.println("this is testing");
         // define process with their burst time
-        int n = 5;
+        int n = 6;
         // int bt[] = { 24, 3, 4 };
         int bt[] = { 6, 2, 8, 3, 4 };
         int wt[] = new int[n];
@@ -59,8 +59,8 @@ public class Fcfs {
         int arr[][] = { { 24, 0 }, { 3, 0 }, { 4, 0 } };
 
         // tester arr
-        int arrt[][] = { { 6, 2 }, { 2, 5 }, { 8, 1 }, { 3, 0 }, { 4, 4 } };
-        // new FcfsWithArrival().findWaitingTime(3, arr, wt);
+        int arrt[][] = { { 9, 0 }, { 1, 3 }, { 2, 1 }, { 4, 1 }, { 3, 2 },{2,3} };
+        new FcfsWithArrival().findWaitingTime(6, arrt, wt);
         int tatanother[] = new int[3];
         // new FcfsWithArrival().getFinalResults(wt, tatanother, 3);
         // Arrays.sort(arr, new Comparator<int[]>() {
@@ -77,8 +77,8 @@ public class Fcfs {
         // }
         // finalAns(n, wt, bt, at);
 
-        new Sjf().algoRithm(n, bt, at);
-        new Sjf().displayData(bt, tat, n);
+        // new Sjf().algoRithm(n, bt, at,tat);
+        // new Sjf().displayData(bt, tat, n);
     }
 }
 
@@ -87,7 +87,9 @@ class FcfsWithArrival {
         // calculate waiting time as
         wt[0] = 0;
         for (int i = 1; i < n; i++) {
+                     //bt              //waiting   arrival
             wt[i] = (arr[i - 1][0] + wt[i - 1]) - arr[i - 1][1];
+            System.out.println("waiting time for "+i+" is "+wt[i]);
         }
     }
 
@@ -107,8 +109,8 @@ class FcfsWithArrival {
 }
 
 class Sjf {
-    void algoRithm(int n, int bt[], int at[]) {
-        int ct[] = new int[n], tat[] = new int[n], wt[] = new int[n];
+    void algoRithm(int n, int bt[], int at[],int tat[]) {
+        int ct[] = new int[n], wt[] = new int[n];
         int remaining_bt[] = new int[n];
 
         // assign array with default values so we can minus them
@@ -158,5 +160,6 @@ class Sjf {
 
     void displayData(int bt[], int tat[], int n) {
         System.out.println("average waiting time is " + (float) Arrays.stream(bt).sum() / n);
+        System.out.println("average turnaround time is " + (float) Arrays.stream(tat).sum() / n);
     }
 }
