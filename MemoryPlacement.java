@@ -79,6 +79,26 @@ public class MemoryPlacement {
         }
     }
 
+    //for worst fit
+    public void worstFit(){
+        resetMemory();
+        for (Process p : processList) {
+            MemoryBlock bestBlock = null;
+            for (MemoryBlock memory : blocks) {
+                if (!memory.isAllocated && memory.size >= p.size) {
+                    if (bestBlock == null || memory.size > bestBlock.size) {
+                        bestBlock = memory;
+                    }
+                }
+            }
+            if (bestBlock != null) {
+                System.out.println("process " + p.id + " allocate to " + bestBlock.size);
+            } else {
+                System.out.println("process nit allocated to any block");
+            }
+        }
+    }
+
     public static void main(String[] args) {
         MemoryPlacement memoryPlacement = new MemoryPlacement();
         memoryPlacement.inatializeMemory();
