@@ -4,6 +4,7 @@ public class MemoryPlacement {
     // globals lists for processes and memory blocks
     private List<MemoryBlock> blocks = new ArrayList<>();
     private List<Process> processList = new ArrayList<>();
+    private int nextFitPointer = 0;
 
     // create empty memory storage to be allocated by processes
     void inatializeMemory() {
@@ -79,8 +80,8 @@ public class MemoryPlacement {
         }
     }
 
-    //for worst fit
-    public void worstFit(){
+    // for worst fit
+    public void worstFit() {
         resetMemory();
         for (Process p : processList) {
             MemoryBlock bestBlock = null;
@@ -95,6 +96,22 @@ public class MemoryPlacement {
                 System.out.println("process " + p.id + " allocate to " + bestBlock.size);
             } else {
                 System.out.println("process nit allocated to any block");
+            }
+        }
+    }
+
+    // for next firt
+    public void nextFit() {
+        resetMemory();
+        for (Process p : processList) {
+            boolean allocated = false;
+            int n = blocks.size();
+            for(int i=0;i<n;i++){
+                MemoryBlock block = blocks.get(nextFitPointer);
+                //check weathre block abele tos store process
+                if(){
+                    
+                }
             }
         }
     }
