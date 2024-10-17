@@ -34,13 +34,13 @@ class practice {
             } else {
                 // in this section we come means page not found
                 pageFault += 1;
-                //first check weather capacity==queue size
-                if(pagesQueue.size()==capacity) {
+                // first check weather capacity==queue size
+                if (pagesQueue.size() == capacity) {
                     // in this case we have to decide replacer page
-                    pagesQueue.poll(); //this line removes page which entered first in queue
+                    pagesQueue.poll(); // this line removes page which entered first in queue
 
                 }
-                pagesQueue.add(page);//this is compulsory step as we have to add page inside frame buffer
+                pagesQueue.add(page);// this is compulsory step as we have to add page inside frame buffer
             }
         }
 
@@ -98,5 +98,46 @@ public class PageReplacementRemastered {
         // capacity);
         // rem.simulation();
 
+    }
+}
+
+class OptimalPageReplacement {
+    int predictToBeReplaced(int currentIndex, int pages[], Set<Integer> frame) {
+
+        // make loop that iterates from next idndex from current
+        int futureOccurance = -1;
+        for (int i = currentIndex + 1; i < pages.length; i++) {
+            for (int page : frame) {
+                // check weather any of the page in frame occures in next list compare
+                // ccordingly
+                if (page == pages[i]) {
+                    // means we found page occurance in future array
+                    // change future occurance
+                    futureOccurance = i;
+                    break; //no sense to serch again
+                }
+            }
+        }
+        return 0;
+    }
+
+    void optimalSimulation(int pages[], int capacity) {
+        Set<Integer> frame = new HashSet<>();
+        int pageFaults = 0;
+
+        for (int i = 0; i < pages.length; i++) {
+            // check weather page is already present inside memory
+            if (frame.contains(pages[i])) {
+                // page already found no need to do anythinf
+                System.out.println("page is alerady found in memory");
+            } else {
+                // page fault occured
+                // check weather frame has spsace or frame is full
+                if (frame.size() == capacity) {
+                    // in this case we have to predict which page have to replace
+                    int pageGonnaReplace = predictToBeReplaced(i, pages, frame);
+                }
+            }
+        }
     }
 }
