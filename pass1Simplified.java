@@ -1,5 +1,5 @@
 import java.util.*;
-
+//cf solve
 public class pass1Simplified {
     // superGlobals array whihc container symbol table ingotmation and inetmedaite
     // code
