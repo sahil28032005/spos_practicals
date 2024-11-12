@@ -6,7 +6,7 @@ public class pass1Simplified {
     Map<String, Integer> symbolTable = new HashMap<>();
     List<String> intermediateCode = new ArrayList<>();
     int locationCounter = 0;
-
+//git conflicts removal checlkppoint
     // pass one stage method
     void passOne(String[] sourceCode) {
         // get line by line code
